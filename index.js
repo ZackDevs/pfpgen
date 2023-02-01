@@ -17,7 +17,7 @@ async function downloadImage(url, filepath) {
     });
 }
 async function test() {
-    let browser = await puppeteer.launch({headless:false});
+    let browser = await puppeteer.launch();
     console.log("[Info] - Getting the Year of the image.")
     let page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
