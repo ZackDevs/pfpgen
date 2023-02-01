@@ -21,7 +21,6 @@ async function test() {
     console.log("[Info] - Getting the Year of the image.")
     let page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
-    await page.setViewport({ width: 1366, height: 768});
     await page.goto('https://www.avogado6.com/',
         { waitUntil: 'networkidle0', }
     );
