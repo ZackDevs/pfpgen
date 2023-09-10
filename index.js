@@ -29,17 +29,20 @@ async function test() {
     })
     let $ = Cheerio.load(html)
     let Years = {}
-    $('span[class="M3I7Z2"]').each(function (index, element) {
-            let Year = $(element).text()
-            let url = $(element).parent().attr("href")
-            if (/[0-9]{4}/g.test(Year)) {
-                 Years[Year] = url
+    $('a[class="kuTaGy wixui-button zKbzSQ"]').each(function (index, element) {
+            Years[new Date(Date.now()).getFullYear().toString()] = ""
+            const Year = $(element).text()
+            if (/[0-9]{4}/.test(Year)) {
+                Years[Year] = $(element)[0].attribs["href"]
             }
+            
         })
-    let RandomYear = Years[Object.keys(Years)[Math.floor(Math.random() * Object.keys(Years).length)]]
+    console.log(Years)
+    let RandomYear = Object.keys(Years)[Math.floor(Math.random() * Object.keys(Years).length)]
+    let RandomLink = Years[RandomYear]
     console.log("[Info] - Got the year: " + RandomYear)
     console.log("[Info] - Getting a new image. This will close when it's complete.")
-    await page.goto(RandomYear ? RandomYear : "https://www.avogado6.com/",
+    await page.goto(RandomLink ? RandomLink : "https://www.avogado6.com/",
         { waitUntil: 'networkidle0', }
     );
     html = await page.evaluate(() => {
@@ -64,10 +67,3 @@ async function test() {
 }
 test()
 
-process.on('uncaughtException', (err, origin) => {
-    fs.writeSync(
-      process.stderr.fd,
-      `Caught exception: ${err}\n` +
-      `Exception origin: ${origin}`
-    );
-  });

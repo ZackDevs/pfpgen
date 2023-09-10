@@ -2,7 +2,7 @@
 goto start
 :start
     node index.js
-    explorer C:\Users\mindr\Downloads
+    C:\Users\mindr\Downloads\image.png
     goto input
 :input
     cls
